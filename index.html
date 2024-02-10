@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Swiper</title>
+</head>
+<body>
+    
+    <div class="card_swiper">
+        <div class="card_swiper_title">
+            <p>LOVE ALBUM</p>
+        </div>
+        <div class="cards_group">
+            <div class="cards cards_0" data-index="0" data-status="active">
+                <div class="card_small card"></div>
+        
+                <div class="card_large card"></div>
+                
+                <div class="card_small card"></div>
+        
+                <div class="card_large card"></div>
+                
+                <div class="card_small card"></div>
+                
+                <div class="card_large card"></div>
+                
+                <div class="card_small card"></div>
+                
+                <div class="card_large card"></div>
+                
+                
+                
+            </div>
+            <div class="cards cards_1" data-index="1" data-status="unknown">
+                <div class="card_small card"></div>
+        
+                <div class="card_large card"></div>
+                
+                <div class="card_small card"></div>
+        
+                <div class="card_large card"></div>
+                
+                <div class="card_small card"></div>
+                
+                <div class="card_large card"></div>
+                
+                <div class="card_small card"></div>
+                
+                <div class="card_large card"></div>
+                
+                
+                
+            </div>
+            <div class="cards cards_2" data-index="2" data-status="unknown">
+                <div class="card_small card"></div>
+        
+                <div class="card_large card"></div>
+                
+                <div class="card_small card"></div>
+        
+                <div class="card_large card"></div>
+                
+                <div class="card_small card"></div>
+                
+                <div class="card_large card"></div>
+                
+                <div class="card_small card"></div>
+                
+                <div class="card_large card"></div>
+                
+                
+                
+            </div>
+            <div class="cards cards_3" data-index="3" data-status="unknown">
+                <div class="card_small card"></div>
+        
+                <div class="card_large card"></div>
+                
+                <div class="card_small card"></div>
+        
+                <div class="card_large card"></div>
+                
+                <div class="card_small card"></div>
+                
+                <div class="card_large card"></div>
+                
+                <div class="card_small card"></div>
+                
+                <div class="card_large card"></div>
+                
+                
+                
+            </div>
+        </div>
+        <div class="card_swiper_buttons">
+            <button id="left_swipe_button" onclick="swiperLeftClick()">
+                <i class="fas fa-arrow-left" ></i>          
+              </button>
+            <button id="right_swipe_button" onclick="swiperRightClick()">
+                <i class="fas fa-arrow-right"></i>
+
+            </button>
+        </div>
+    </div>
+ 
+
+ 
+
+
+<script>
+
+let activeIndex = 0;
+
+const groups = document.getElementsByClassName("cards");
+
+const swiperRightClick = () => {
+  // bump active index
+
+  const nextIndex = activeIndex + 1 <= groups.length - 1 ? activeIndex + 1 : 0;
+
+  const currentGroup = document.querySelector(`[data-index="${activeIndex}"]`),
+        nextGroup = document.querySelector (`[data-index="${nextIndex}"]`);
+
+  // active group becomes after
+  currentGroup.dataset.status = "after";
+  //nect group becomes active
+  nextGroup.dataset.status = "becoming-active-from-before";
+
+
+  setTimeout(() => {
+    nextGroup.dataset.status = "active";
+    activeIndex = nextIndex;
+  })
+  
+};
+
+const swiperLeftClick = () => {
+  // bump active index
+
+  const nextIndex = activeIndex - 1 >= 0 ? activeIndex - 1 : groups.length - 1;
+
+  const currentGroup = document.querySelector(`[data-index="${activeIndex}"]`),
+        nextGroup = document.querySelector (`[data-index="${nextIndex}"]`);
+
+  // active group becomes after
+  currentGroup.dataset.status = "before";
+  //nect group becomes active
+  nextGroup.dataset.status = "becoming-active-from-after";
+
+
+  setTimeout(() => {
+    nextGroup.dataset.status = "active";
+    activeIndex = nextIndex;
+  })
+  
+}
+
+</script>
+</body>
+</html>
